@@ -20,7 +20,7 @@ public class ShipPosition {
         System.out.println();
 
         System.out.println("Enter the coordinates of the Battleship (4 cells):");
-        System.out.println();
+
         while (positioning("Battleship" , 4, field));
         field.printField();
         System.out.println();

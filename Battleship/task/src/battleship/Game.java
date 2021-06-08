@@ -9,15 +9,40 @@ public class Game {
         scanner = new Scanner(System.in);
     }
 
-    static void startGame(GameField field){
+    static void startGame(GameField fstPlayerField, GameField sndPlayerField){
         System.out.println();
-        System.out.println("The game starts!");
-        System.out.println();
-        field.printHiddenField();
-        System.out.println();
-        System.out.println("Take a shot!");
-        System.out.println();
-        while (shot(field));
+        boolean isContinue = true;
+        while (isContinue){
+            System.out.println("Press Enter and pass the move to another player");
+            scanner.nextLine();
+            System.out.println();
+            sndPlayerField.printHiddenField();
+            System.out.println("---------------------");
+            fstPlayerField.printField();
+            System.out.println();
+            System.out.println("Player 1, it's your turn:");
+            System.out.println();
+            isContinue = shot(sndPlayerField);
+
+            System.out.println("Press Enter and pass the move to another player");
+            scanner.nextLine();
+            System.out.println();
+            fstPlayerField.printHiddenField();
+            System.out.println("---------------------");
+            sndPlayerField.printField();
+            System.out.println();
+            System.out.println("Player 2, it's your turn:");
+            System.out.println();
+            isContinue = shot(fstPlayerField);
+        }
+    }
+
+    static private void fstPlayerMove(){
+
+    }
+
+    static private void sndPlayerMove(){
+
     }
 
     static private String checkInput(String input) {
@@ -58,25 +83,19 @@ public class Game {
                 case "X":
                     field.getGameField()[row][clm] = "X";
                     field.getHiddenField()[row][clm] = "X";
-//                    field.getVisualField()[row][clm] = "X";
-                    field.printHiddenField();
-                    System.out.println();
                     if (isAllSank(field)) {
                         System.out.println("You sank the last ship. You won. Congratulations!");
                         isContinue = false;
                     } else if (isSank(field, row, clm)) {
-                        System.out.println("You sank a ship! Specify a new target:");
+                        System.out.println("You sank a ship!");
                     } else {
-                        System.out.println("You hit a ship! Try again:");
+                        System.out.println("You hit a ship!");
                     }
                     break;
                 case "~":
                     field.getGameField()[row][clm] = "M";
                     field.getHiddenField()[row][clm] = "M";
-//                    field.getVisualField()[row][clm] = "M";
-                    field.printHiddenField();
-                    System.out.println();
-                    System.out.println("You missed. Try again:");
+                    System.out.println("You missed!");
                     break;
 //                case "X":
 //                    System.out.println("already shot");
@@ -85,8 +104,6 @@ public class Game {
                     break;
             }
         }
-
-        System.out.println();
         return isContinue;
     }
 
