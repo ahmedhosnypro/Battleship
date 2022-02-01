@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-08T12:15:25" hostname="DESKTOP-SQGJGEQ" time="0.511">
+<testsuite name="Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-02-01T16:43:23" hostname="AHMED-HOSNY" time="0.654">
   <properties/>
-  <testcase name="start" classname="Tests" time="0.511"/>
+  <testcase name="start" classname="Tests" time="0.654"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 Player 1, place your ships on the game field

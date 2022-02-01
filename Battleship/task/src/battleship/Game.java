@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class Game {
     static private final Scanner scanner;
 
-    static  {
+    static {
         scanner = new Scanner(System.in);
     }
 
-    static void startGame(GameField fstPlayerField, GameField sndPlayerField){
+    static void startGame(GameField fstPlayerField, GameField sndPlayerField) {
         System.out.println();
         boolean isContinue = true;
-        while (isContinue){
+        while (isContinue) {
             System.out.println("Press Enter and pass the move to another player");
             scanner.nextLine();
             System.out.println();
@@ -37,11 +37,11 @@ public class Game {
         }
     }
 
-    static private void fstPlayerMove(){
+    static private void fstPlayerMove() {
 
     }
 
-    static private void sndPlayerMove(){
+    static private void sndPlayerMove() {
 
     }
 
@@ -55,8 +55,7 @@ public class Game {
             if (!(input.charAt(0) >= 65 && input.charAt(0) <= 74)) {
                 check = input.charAt(0) + " first option on the coordinate must be [A - J]";
                 return check;
-            }
-            else if (!(input.charAt(1) >= 48 && input.charAt(1) <= 58)) {
+            } else if (!(input.charAt(1) >= 48 && input.charAt(1) <= 58)) {
                 check = input.charAt(1) + " second option on the coordinate must be a number";
                 return check;
             } else {
@@ -66,15 +65,14 @@ public class Game {
         }
     }
 
-    static boolean shot(GameField field){
+    static boolean shot(GameField field) {
         boolean isContinue = true;
         String input = scanner.nextLine().trim();
         input = input.replaceAll("10", ":");
         System.out.println();
         if (!checkInput(input).equals("valid")) {
             System.out.println("Error! You entered the wrong coordinates! Try again:");
-        }
-        else {
+        } else {
             int row = (input.charAt(0) - 64);
             int clm = (input.charAt(1) - 48);
 
@@ -107,9 +105,9 @@ public class Game {
         return isContinue;
     }
 
-    private static boolean isSank(GameField field, int row, int clm){
+    private static boolean isSank(GameField field, int row, int clm) {
         int[][] cords = new int[2][2];
-        switch (field.getVisualField()[row][clm]){
+        switch (field.getVisualField()[row][clm]) {
             case "A":
                 cords = field.getAircraftCarrier();
                 break;
@@ -129,9 +127,9 @@ public class Game {
                 break;
         }
         boolean isSank = true;
-        for (int i = cords[0][0]; i <= cords[1][0]; i++){
-            for (int j = cords[0][1]; j <= cords[1][1]; j++){
-                if (!field.getGameField()[i][j].equals("X")){
+        for (int i = cords[0][0]; i <= cords[1][0]; i++) {
+            for (int j = cords[0][1]; j <= cords[1][1]; j++) {
+                if (!field.getGameField()[i][j].equals("X")) {
                     isSank = false;
                     break;
                 }
@@ -140,17 +138,19 @@ public class Game {
 
         return isSank;
     }
-    private static boolean isAllSank(GameField field){
+
+    private static boolean isAllSank(GameField field) {
         return isAircraftCarrierSank(field) && isBattleshipSank(field) && isSubmarineSank(field) && isCruiserSank(field)
                 && isDestroyerSank(field);
     }
-    private static boolean isAircraftCarrierSank(GameField field){
+
+    private static boolean isAircraftCarrierSank(GameField field) {
         boolean isSank = true;
         int[][] cords = field.getAircraftCarrier();
 
-        for (int i = cords[0][0]; i <= cords[1][0]; i++){
-            for (int j = cords[0][1]; j <= cords[1][1]; j++){
-                if (!field.getGameField()[i][j].equals("X")){
+        for (int i = cords[0][0]; i <= cords[1][0]; i++) {
+            for (int j = cords[0][1]; j <= cords[1][1]; j++) {
+                if (!field.getGameField()[i][j].equals("X")) {
                     isSank = false;
                     break;
                 }
@@ -160,13 +160,14 @@ public class Game {
         return isSank;
 
     }
-    private static boolean isBattleshipSank(GameField field){
+
+    private static boolean isBattleshipSank(GameField field) {
         boolean isSank = true;
         int[][] cords = field.getBattleship();
 
-        for (int i = cords[0][0]; i <= cords[1][0]; i++){
-            for (int j = cords[0][1]; j <= cords[1][1]; j++){
-                if (!field.getGameField()[i][j].equals("X")){
+        for (int i = cords[0][0]; i <= cords[1][0]; i++) {
+            for (int j = cords[0][1]; j <= cords[1][1]; j++) {
+                if (!field.getGameField()[i][j].equals("X")) {
                     isSank = false;
                     break;
                 }
@@ -176,13 +177,14 @@ public class Game {
         return isSank;
 
     }
-    private static boolean isSubmarineSank(GameField field){
+
+    private static boolean isSubmarineSank(GameField field) {
         boolean isSank = true;
         int[][] cords = field.getSubmarine();
 
-        for (int i = cords[0][0]; i <= cords[1][0]; i++){
-            for (int j = cords[0][1]; j <= cords[1][1]; j++){
-                if (!field.getGameField()[i][j].equals("X")){
+        for (int i = cords[0][0]; i <= cords[1][0]; i++) {
+            for (int j = cords[0][1]; j <= cords[1][1]; j++) {
+                if (!field.getGameField()[i][j].equals("X")) {
                     isSank = false;
                     break;
                 }
@@ -192,13 +194,14 @@ public class Game {
         return isSank;
 
     }
-    private static boolean isCruiserSank(GameField field){
+
+    private static boolean isCruiserSank(GameField field) {
         boolean isSank = true;
         int[][] cords = field.getCruiser();
 
-        for (int i = cords[0][0]; i <= cords[1][0]; i++){
-            for (int j = cords[0][1]; j <= cords[1][1]; j++){
-                if (!field.getGameField()[i][j].equals("X")){
+        for (int i = cords[0][0]; i <= cords[1][0]; i++) {
+            for (int j = cords[0][1]; j <= cords[1][1]; j++) {
+                if (!field.getGameField()[i][j].equals("X")) {
                     isSank = false;
                     break;
                 }
@@ -208,13 +211,14 @@ public class Game {
         return isSank;
 
     }
-    private static boolean isDestroyerSank(GameField field){
+
+    private static boolean isDestroyerSank(GameField field) {
         boolean isSank = true;
         int[][] cords = field.getDestroyer();
 
-        for (int i = cords[0][0]; i <= cords[1][0]; i++){
-            for (int j = cords[0][1]; j <= cords[1][1]; j++){
-                if (!field.getGameField()[i][j].equals("X")){
+        for (int i = cords[0][0]; i <= cords[1][0]; i++) {
+            for (int j = cords[0][1]; j <= cords[1][1]; j++) {
+                if (!field.getGameField()[i][j].equals("X")) {
                     isSank = false;
                     break;
                 }

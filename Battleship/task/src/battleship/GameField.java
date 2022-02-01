@@ -3,9 +3,6 @@ package battleship;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -69,10 +66,11 @@ public class GameField {
     public void setGameField(String[][] gameField) {
         this.gameField = gameField;
     }
+
     public void setGameField() throws FileNotFoundException {
         String[][] field = new String[11][11];
         Scanner sc = new Scanner(new BufferedReader(new FileReader("Battleship/task/src/battleship/field.txt")));
-        while(sc.hasNextLine()) {
+        while (sc.hasNextLine()) {
             for (String[] strings : field) {
                 String[] line = sc.nextLine().split(" ");
                 System.arraycopy(line, 0, strings, 0, line.length);
@@ -80,6 +78,7 @@ public class GameField {
         }
         this.gameField = field;
     }
+
     public String[][] getGameField() {
         return gameField;
     }
@@ -87,6 +86,7 @@ public class GameField {
     public void setHiddenField(String[][] hiddenField) {
         this.hiddenField = hiddenField;
     }
+
     public String[][] getHiddenField() {
         return hiddenField;
     }
@@ -102,6 +102,7 @@ public class GameField {
     public int[][] getAircraftCarrier() {
         return AircraftCarrier;
     }
+
     public void setAircraftCarrier(int[][] aircraftCarrier) {
         AircraftCarrier = aircraftCarrier;
     }
@@ -109,6 +110,7 @@ public class GameField {
     public int[][] getBattleship() {
         return Battleship;
     }
+
     public void setBattleship(int[][] battleship) {
         Battleship = battleship;
     }
@@ -116,6 +118,7 @@ public class GameField {
     public int[][] getCruiser() {
         return Cruiser;
     }
+
     public void setCruiser(int[][] cruiser) {
         Cruiser = cruiser;
     }
@@ -123,6 +126,7 @@ public class GameField {
     public int[][] getDestroyer() {
         return Destroyer;
     }
+
     public void setDestroyer(int[][] destroyer) {
         Destroyer = destroyer;
     }
@@ -130,6 +134,7 @@ public class GameField {
     public int[][] getSubmarine() {
         return Submarine;
     }
+
     public void setSubmarine(int[][] submarine) {
         Submarine = submarine;
     }
@@ -146,7 +151,8 @@ public class GameField {
             System.out.println();
         }
     }
-    void printHiddenField(){
+
+    void printHiddenField() {
         for (String[] strings : hiddenField) {
             for (int j = 0; j < strings.length; j++) {
                 if (j == hiddenField.length) {
@@ -158,7 +164,8 @@ public class GameField {
             System.out.println();
         }
     }
-    void printVisualField(){
+
+    void printVisualField() {
         for (String[] strings : visualField) {
             for (int j = 0; j < strings.length; j++) {
                 if (j == visualField.length) {
@@ -171,7 +178,7 @@ public class GameField {
         }
     }
 
-    boolean checkShip(){
+    boolean checkShip() {
 
         return false;
     }

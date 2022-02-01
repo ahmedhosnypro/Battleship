@@ -5,41 +5,41 @@ import java.util.Scanner;
 public class ShipPosition {
     static private final Scanner scanner;
 
-    static  {
+    static {
         scanner = new Scanner(System.in);
     }
 
-    static void takePosition(GameField field){
+    static void takePosition(GameField field) {
         field.printField();
         System.out.println();
 
         System.out.println("Enter the coordinates of the Aircraft Carrier (5 cells):");
         System.out.println();
-        while (positioning("Aircraft Carrier", 5, field));
+        while (positioning("Aircraft Carrier", 5, field)) ;
         field.printField();
         System.out.println();
 
         System.out.println("Enter the coordinates of the Battleship (4 cells):");
 
-        while (positioning("Battleship" , 4, field));
+        while (positioning("Battleship", 4, field)) ;
         field.printField();
         System.out.println();
 
         System.out.println("Enter the coordinates of the Submarine (3 cells):");
         System.out.println();
-        while (positioning("Submarine", 3, field));
+        while (positioning("Submarine", 3, field)) ;
         field.printField();
         System.out.println();
 
         System.out.println("Enter the coordinates of the Cruiser (3 cells):");
         System.out.println();
-        while (positioning("Cruiser", 3, field));
+        while (positioning("Cruiser", 3, field)) ;
         field.printField();
         System.out.println();
 
         System.out.println("Enter the coordinates of the Destroyer (2 cells):");
         System.out.println();
-        while (positioning("Destroyer", 2, field));
+        while (positioning("Destroyer", 2, field)) ;
         field.printField();
         System.out.println();
     }
@@ -51,10 +51,9 @@ public class ShipPosition {
         if (checkInput(input).equals("valid")) {
             if (checkLocation(input)) {
                 if (checkLength(input, cells).equals("valid")) {
-                    if (checkNearbyLocations(input, field)){
+                    if (checkNearbyLocations(input, field)) {
                         placeShip(input, field, cells, ship);
-                    }
-                    else {
+                    } else {
                         System.out.println("Error! You placed it too close to another one. Try again:");
                         System.out.println();
                         isNotFinished = true;
@@ -150,58 +149,49 @@ public class ShipPosition {
         if (fstCrdRow == sndCrdRow) {
             fstClm = Math.min(fstCrdClm, sndCrdClm);
             lstClm = Math.max(fstCrdClm, sndCrdClm);
-            if (fstCrdRow == 1){
+            if (fstCrdRow == 1) {
                 fstRow = fstCrdRow;
                 lstRow = fstCrdRow + 1;
-            }
-            else if (fstCrdRow == 10){
+            } else if (fstCrdRow == 10) {
                 fstRow = fstCrdRow - 1;
                 lstRow = fstCrdRow;
-            }
-            else {
+            } else {
                 fstRow = fstCrdRow - 1;
                 lstRow = lstRow + 1;
             }
-            if (fstClm == 1){
+            if (fstClm == 1) {
                 lstClm = lstClm + 1;
-            }
-            else if (lstClm == 10){
+            } else if (lstClm == 10) {
                 fstClm = fstClm - 1;
-            }
-            else {
+            } else {
                 fstClm = fstClm - 1;
                 lstClm = lstClm + 1;
             }
-        }
-        else if (fstCrdClm == sndCrdClm) {
+        } else if (fstCrdClm == sndCrdClm) {
             fstRow = Math.min(fstCrdRow, sndCrdRow);
             lstRow = Math.max(fstCrdRow, sndCrdRow);
 
-            if (fstCrdClm == 1){
+            if (fstCrdClm == 1) {
                 fstClm = fstCrdClm;
                 lstClm = fstCrdClm + 1;
-            }
-            else if (fstCrdClm == 10){
+            } else if (fstCrdClm == 10) {
                 fstClm = fstCrdClm - 1;
                 lstClm = fstCrdClm;
-            }
-            else {
+            } else {
                 fstClm = fstCrdClm - 1;
                 lstClm = fstCrdClm + 1;
             }
-            if (fstRow == 1){
+            if (fstRow == 1) {
                 lstRow = lstRow + 1;
-            }
-            else if (lstRow == 10){
+            } else if (lstRow == 10) {
                 fstRow = fstRow - 1;
-            }
-            else {
+            } else {
                 fstRow = fstRow - 1;
                 lstRow = lstRow + 1;
             }
         }
-        for (int i = fstRow; i <= lstRow; i++){
-            for (int j = fstClm; j <= lstClm; j++){
+        for (int i = fstRow; i <= lstRow; i++) {
+            for (int j = fstClm; j <= lstClm; j++) {
                 if (!field.getGameField()[i][j].equals("~")) {
                     check = false;
                     break;
@@ -211,7 +201,7 @@ public class ShipPosition {
         return check;
     }
 
-    static private void placeShip(String[] input, GameField field, int cells, String ship){
+    static private void placeShip(String[] input, GameField field, int cells, String ship) {
         int fstCrdRow = (input[0].charAt(0) - 64);
         int fstCrdClm = (input[0].charAt(1) - 48);
         int sndCrdRow = (input[1].charAt(0) - 64);
@@ -224,10 +214,10 @@ public class ShipPosition {
 
         setShip(input, ship, field);
 
-        for (int i = fstRow; i <= lstRow; i++){
-            for (int j = fstClm; j <= lstClm; j++){
+        for (int i = fstRow; i <= lstRow; i++) {
+            for (int j = fstClm; j <= lstClm; j++) {
                 field.getGameField()[i][j] = "O";
-                switch (ship){
+                switch (ship) {
                     case "Aircraft Carrier":
                         field.getVisualField()[i][j] = "A";
                         break;
@@ -250,7 +240,8 @@ public class ShipPosition {
             }
         }
     }
-    static private void setShip(String[] input, String ship, GameField field){
+
+    static private void setShip(String[] input, String ship, GameField field) {
         int fstCrdRow = (input[0].charAt(0) - 64);
         int fstCrdClm = (input[0].charAt(1) - 48);
         int sndCrdRow = (input[1].charAt(0) - 64);
@@ -261,8 +252,8 @@ public class ShipPosition {
         int fstRow = Math.min(fstCrdRow, sndCrdRow);
         int lstRow = Math.max(fstCrdRow, sndCrdRow);
 
-        int[][] shipCoordinates = (new int[][]{{fstRow, fstClm},{lstRow, lstClm}});
-        switch (ship){
+        int[][] shipCoordinates = (new int[][]{{fstRow, fstClm}, {lstRow, lstClm}});
+        switch (ship) {
             case "Aircraft Carrier":
                 field.setAircraftCarrier(shipCoordinates);
                 break;
